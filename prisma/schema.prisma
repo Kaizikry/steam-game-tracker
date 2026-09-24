@@ -1,0 +1,152 @@
+// Steam Game Tracker database schema.
+// Differences from the PRD draft (see docs/ARCHITECTURE.md):
+//   - Game.steamId is unique per user (@@unique([userId, steamId])), not globally,
+//     otherwise two users could never own the same game.
+//   - User.steamId is optional and not unique: users start as anonymous sessions and
+//     link a public Steam profile on first import (Steam OAuth is out of MVP scope).
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  steamId       String?
+  steamUsername String?
+  displayName   String?
+  profileUrl    String?
+  profileImage  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastImport    DateTime?
+  lastActiveAt  DateTime  @default(now())
+
+  games         Game[]
+  tags          Tag[]
+  settings      UserSettings?
+  importHistory ImportHistory[]
+  activityDays  ActivityDay[]
+
+  @@index([steamId])
+}
+
+model Game {
+  id              String     @id @default(cuid())
+  steamId         Int
+  userId          String
+  user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  title           String     @db.VarChar(255)
+  description     String?
+  coverArtUrl     String?
+  status          GameStatus @default(NOT_STARTED)
+  hoursPlayed     Float      @default(0)
+  releaseDate     DateTime?
+  steamRating     Float?
+  isFreeToPlay    Boolean    @default(false)
+  isDLC           Boolean    @default(false)
+  lastPlayedAt    DateTime?
+
+  notes           String?    @db.Text
+  notesUpdatedAt  DateTime?
+
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  statusUpdatedAt DateTime   @default(now())
+  completedAt     DateTime?
+
+  tags            Tag[]
+  achievements    Achievement[]
+
+  @@unique([userId, steamId])
+  @@index([userId])
+  @@index([userId, status])
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name      String   @db.VarChar(50)
+  color     String   @default("#3B82F6")
+
+  games     Game[]
+  createdAt DateTime @default(now())
+
+  @@unique([userId, name])
+  @@index([userId])
+}
+
+model Achievement {
+  id                 String    @id @default(cuid())
+  gameId             String
+  game               Game      @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  steamAchievementId String
+  name               String
+  description        String?
+  icon               String?
+  unlockedAt         DateTime?
+  rarity             Float?
+
+  createdAt          DateTime  @default(now())
+
+  @@unique([gameId, steamAchievementId])
+  @@index([gameId])
+}
+
+model ImportHistory {
+  id                 String   @id @default(cuid())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  source             String   @default("steam") // steam, json, csv
+  totalGamesImported Int      @default(0)
+  newGamesAdded      Int      @default(0)
+  importedAt         DateTime @default(now())
+  status             String   @default("completed") // completed, failed, in_progress
+  errorMessage       String?
+
+  @@index([userId])
+  @@index([importedAt])
+}
+
+model UserSettings {
+  id                   String   @id @default(cuid())
+  userId               String   @unique
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  theme                String   @default("dark") // light, dark, auto
+  defaultViewType      String   @default("kanban") // kanban, grid, list
+  language             String   @default("en")
+  privacyOptIn         Boolean  @default(false)
+  emailNotifications   Boolean  @default(false)
+  includeFreeToPlay    Boolean  @default(true)
+  monthlyCompletionGoal Int     @default(0)
+  // Custom display names for the four fixed status columns, e.g. {"NOT_STARTED":"Backlog"}
+  statusLabels         Json     @default("{}")
+
+  updatedAt            DateTime @updatedAt
+}
+
+// One row per day the user opened the app; drives streak tracking.
+model ActivityDay {
+  userId String
+  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  day    DateTime @db.Date
+
+  @@id([userId, day])
+}
+
+enum GameStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  ABANDONED
+}

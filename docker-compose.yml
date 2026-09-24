@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: steamtracker
+      POSTGRES_PASSWORD: steamtracker
+      POSTGRES_DB: steamtracker
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U steamtracker']
+      interval: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    profiles: ['full']
+    environment:
+      DATABASE_URL: postgresql://steamtracker:steamtracker@postgres:5432/steamtracker
+      STEAM_API_KEY: ${STEAM_API_KEY:-}
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production-please-32chars}
+      FRONTEND_URL: http://localhost:5173
+      PORT: 3001
+    ports:
+      - '3001:3001'
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:

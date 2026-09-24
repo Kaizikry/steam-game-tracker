@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-steam-900: #0e141b;
+    --color-steam-800: #171d25;
+    --color-steam-700: #1b2838;
+    --color-steam-600: #2a475e;
+    --color-steam-accent: #66c0f4;
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* Status + chart colors (categorical slots 1-4), stepped separately for each theme. */
+:root {
+    --status-not-started: #2a78d6;
+    --status-in-progress: #eb6834;
+    --status-completed: #1baf7a;
+    --status-abandoned: #eda100;
+    --chart-grid: #e5e7eb;
+}
+:root.dark {
+    --status-not-started: #3987e5;
+    --status-in-progress: #d95926;
+    --status-completed: #199e70;
+    --status-abandoned: #c98500;
+    --chart-grid: #2a3441;
+}
+
+html {
+    color-scheme: light;
+}
+html.dark {
+    color-scheme: dark;
+}
+
+body {
+    @apply bg-slate-50 text-slate-900 antialiased dark:bg-steam-900 dark:text-slate-100;
+}
+
+:focus-visible {
+    @apply outline-2 outline-offset-2 outline-steam-accent;
+}
+
+@utility btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@utility btn-primary {
+    @apply btn bg-sky-600 text-white hover:bg-sky-500 dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400;
+}
+
+@utility btn-secondary {
+    @apply btn border border-slate-300 bg-white text-slate-800 hover:bg-slate-100 dark:border-slate-600 dark:bg-steam-800 dark:text-slate-100 dark:hover:bg-steam-700;
+}
+
+@utility btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-500;
+}
+
+@utility input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-500 dark:border-slate-600 dark:bg-steam-800 dark:text-slate-100 dark:placeholder:text-slate-400;
+}
+
+@utility card {
+    @apply rounded-xl border border-slate-200 bg-white dark:border-slate-700/60 dark:bg-steam-800;
+}
+
+@utility muted {
+    @apply text-slate-600 dark:text-slate-400;
+}

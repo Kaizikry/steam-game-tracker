@@ -1,0 +1,212 @@
+{
+  "version": "1.0",
+  "exportDate": "2026-09-24T13:54:12.471Z",
+  "games": [
+    {
+      "steamId": 570940,
+      "title": "ELDEN RING",
+      "status": "in_progress",
+      "hoursPlayed": 45.5,
+      "notes": "Stuck at **Malenia**\n- level Vigor to 40\n- try bleed build",
+      "tags": [
+        "Souls-like",
+        "Action"
+      ]
+    },
+    {
+      "steamId": 292030,
+      "title": "The Witcher 3: Wild Hunt",
+      "status": "completed",
+      "hoursPlayed": 127.2,
+      "notes": "Amazing story. *Blood and Wine* was the best part.",
+      "tags": [
+        "RPG",
+        "Story-Heavy"
+      ]
+    },
+    {
+      "steamId": 1091500,
+      "title": "Cyberpunk 2077",
+      "status": "in_progress",
+      "hoursPlayed": 32,
+      "notes": "Act 2, doing Panam quests",
+      "tags": [
+        "RPG",
+        "Story-Heavy"
+      ]
+    },
+    {
+      "steamId": 1145360,
+      "title": "Hades",
+      "status": "completed",
+      "hoursPlayed": 64.3,
+      "notes": "",
+      "tags": [
+        "Roguelike"
+      ]
+    },
+    {
+      "steamId": 413150,
+      "title": "Stardew Valley",
+      "status": "abandoned",
+      "hoursPlayed": 18.7,
+      "notes": "Year 2 spring. Got bored of farming.",
+      "tags": [
+        "Co-op",
+        "Relaxing"
+      ]
+    },
+    {
+      "steamId": 367520,
+      "title": "Hollow Knight",
+      "status": "not_started",
+      "hoursPlayed": 0,
+      "notes": "",
+      "tags": [
+        "Metroidvania"
+      ]
+    },
+    {
+      "steamId": 1174180,
+      "title": "Red Dead Redemption 2",
+      "status": "not_started",
+      "hoursPlayed": 2.1,
+      "notes": "",
+      "tags": [
+        "Story-Heavy"
+      ]
+    },
+    {
+      "steamId": 620,
+      "title": "Portal 2",
+      "status": "completed",
+      "hoursPlayed": 14.2,
+      "notes": "",
+      "tags": [
+        "Puzzle",
+        "Co-op"
+      ]
+    },
+    {
+      "steamId": 814380,
+      "title": "Sekiro: Shadows Die Twice",
+      "status": "abandoned",
+      "hoursPlayed": 9.4,
+      "notes": "Genichiro wall.",
+      "tags": [
+        "Souls-like"
+      ]
+    },
+    {
+      "steamId": 105600,
+      "title": "Terraria",
+      "status": "in_progress",
+      "hoursPlayed": 88,
+      "notes": "",
+      "tags": [
+        "Co-op"
+      ]
+    },
+    {
+      "steamId": 1245620,
+      "title": "ELDEN RING NIGHTREIGN",
+      "status": "not_started",
+      "hoursPlayed": 0,
+      "notes": "",
+      "tags": []
+    },
+    {
+      "steamId": 252490,
+      "title": "Rust",
+      "status": "not_started",
+      "hoursPlayed": 0.3,
+      "notes": "",
+      "tags": [
+        "Multiplayer"
+      ]
+    },
+    {
+      "steamId": 1086940,
+      "title": "Baldur's Gate 3",
+      "status": "in_progress",
+      "hoursPlayed": 71.8,
+      "notes": "Act 3, Lower City",
+      "tags": [
+        "RPG",
+        "Co-op",
+        "Story-Heavy"
+      ]
+    },
+    {
+      "steamId": 588650,
+      "title": "Dead Cells",
+      "status": "completed",
+      "hoursPlayed": 25,
+      "notes": "",
+      "tags": [
+        "Roguelike"
+      ]
+    },
+    {
+      "steamId": 646570,
+      "title": "Slay the Spire",
+      "status": "in_progress",
+      "hoursPlayed": 40.2,
+      "notes": "Ascension 8",
+      "tags": [
+        "Roguelike"
+      ]
+    },
+    {
+      "steamId": 268910,
+      "title": "Cuphead",
+      "status": "not_started",
+      "hoursPlayed": 0,
+      "notes": "",
+      "tags": [
+        "Co-op"
+      ]
+    },
+    {
+      "steamId": 49520,
+      "title": "Borderlands 2",
+      "status": "abandoned",
+      "hoursPlayed": 12,
+      "notes": "",
+      "tags": [
+        "Co-op"
+      ]
+    },
+    {
+      "steamId": 730,
+      "title": "Counter-Strike 2",
+      "status": "not_started",
+      "hoursPlayed": 0.8,
+      "notes": "",
+      "tags": [
+        "Multiplayer"
+      ]
+    },
+    {
+      "steamId": 1817070,
+      "title": "Marvel's Spider-Man Remastered",
+      "status": "completed",
+      "hoursPlayed": 22.5,
+      "notes": "",
+      "tags": [
+        "Action"
+      ]
+    },
+    {
+      "steamId": 1593500,
+      "title": "God of War",
+      "status": "not_started",
+      "hoursPlayed": 0,
+      "notes": "",
+      "tags": [
+        "Action",
+        "Story-Heavy"
+      ]
+    }
+  ]
+}
