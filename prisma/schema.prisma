@@ -5,9 +5,13 @@
 //   - User.steamId is optional and not unique: users start as anonymous sessions and
 //     link a public Steam profile on first import (Steam OAuth is out of MVP scope).
 
+// DATABASE_URL is what the app uses at runtime (on Supabase: the pooled "transaction"
+// connection). DIRECT_URL is used by `prisma migrate` and must be a non-pooled
+// connection (on Supabase: the "session" pooler). Locally both can be the same URL.
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {

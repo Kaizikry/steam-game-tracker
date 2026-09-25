@@ -9,14 +9,15 @@ backend. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for where the implemen
 
 ## Quickstart
 
-Prerequisites: Node.js 18+ and PostgreSQL 13+ (or Docker).
+Prerequisites: Node.js 18+ and a PostgreSQL database. The default setup uses a free
+[Supabase](https://supabase.com) project; a local Postgres or Docker also works (see
+[docs/SETUP.md](docs/SETUP.md)).
 
 ```bash
 cd steam-game-tracker
 npm install                          # installs both workspaces, generates the Prisma client
-cp backend/.env.example backend/.env # then add your STEAM_API_KEY (see below)
-docker compose up -d postgres        # or point DATABASE_URL at your own Postgres
-npm run prisma:migrate:deploy -w backend
+cp backend/.env.example backend/.env # then fill in the Supabase URLs and STEAM_API_KEY
+npm run prisma:migrate:deploy -w backend   # creates the tables in your database
 npm run dev                          # API on :3001, web app on http://localhost:5173
 ```
 

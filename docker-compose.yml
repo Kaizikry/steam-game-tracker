@@ -21,6 +21,7 @@ services:
     profiles: ['full']
     environment:
       DATABASE_URL: postgresql://steamtracker:steamtracker@postgres:5432/steamtracker
+      DIRECT_URL: postgresql://steamtracker:steamtracker@postgres:5432/steamtracker
       STEAM_API_KEY: ${STEAM_API_KEY:-}
       JWT_SECRET: ${JWT_SECRET:-change-me-in-production-please-32chars}
       FRONTEND_URL: http://localhost:5173
