@@ -4,6 +4,8 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  // GitHub Pages serves the site from /<repo-name>/, so CI sets VITE_BASE. Defaults to '/'.
+  base: process.env.VITE_BASE ?? '/',
   plugins: [react(), tailwindcss()],
   build: {
     rollupOptions: {
