@@ -25,7 +25,7 @@ function SyncPreferences() {
 export default function App() {
     useThemeEffect();
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
             <SessionGate>
                 <SyncPreferences />
                 <Routes>
